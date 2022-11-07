@@ -62,9 +62,9 @@ class CourseController extends Controller
     public function courseCreate(CoursesService $coursesService): JsonResponse
     {
         $urls = [
-            'https://api.alison.com/v0.1/search?locale=en&language=id&order=default&type=diploma&size=60&page=1',
-            'https://api.alison.com/v0.1/search?locale=en&language=es&order=default&type=diploma&size=60&page=1',
-            'https://api.alison.com/v0.1/search?locale=en&language=es-LA&order=default&type=diploma&size=60&page=1',
+//            'https://api.alison.com/v0.1/search?locale=en&language=id&order=default&type=diploma&size=60&page=1',
+//            'https://api.alison.com/v0.1/search?locale=en&language=es&order=default&type=diploma&size=60&page=1',
+//            'https://api.alison.com/v0.1/search?locale=en&language=es-LA&order=default&type=diploma&size=60&page=1',
             'https://api.alison.com/v0.1/search?locale=es&language=en&order=default&category=it&size=20&page=1',
             'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=health&size=20&page=1',
             'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=language&size=20&page=1',
