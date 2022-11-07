@@ -9,8 +9,8 @@ class CoursesService
 {
     public function createCourse(string $url, int $id): bool
     {
-        $url = Http::get($url);
-        $listItem = $url['result'];
+        $urls = Http::get($url);
+        $listItem = $urls['result'];
         $courses = [];
 
         foreach ($listItem as $item){
