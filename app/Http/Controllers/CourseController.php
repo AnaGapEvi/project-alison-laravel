@@ -18,7 +18,6 @@ class CourseController extends Controller
         $data= Course::where('type', 'Diploma')
             ->with('category')
             ->get();
-
         return response()->json($data);
     }
     public function certificateCourse():JsonResponse

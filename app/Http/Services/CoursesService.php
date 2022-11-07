@@ -11,7 +11,9 @@ class CoursesService
     {
         $urls = Http::get($url);
         $listItem = $urls['result'];
+
         $courses = [];
+        $type=['Certificate', 'Diploma'];
 
         foreach ($listItem as $item){
             $image =$item['courseImgUrl'];
@@ -26,10 +28,12 @@ class CoursesService
                 'description'=>$description,
                 'language'=>$language,
                 'image'=>$image,
-                'type'=>'Certificate',
+//                'type'=>'sss',
+                'type'=>$type[rand(0,1)],
                 'category_id'=> $id
             ];
         }
+//        dd($courses);
 
         return Course::insert($courses);
     }
