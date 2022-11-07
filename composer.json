@@ -20,6 +20,7 @@
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/linkedin": "^4.2",
         "socialiteproviders/microsoft": "^4.2",
+        "socialiteproviders/microsoft-azure": "^5.1",
         "socialiteproviders/yahoo": "^4.1",
         "sunra/php-simple-html-dom-parser": "^1.5",
         "voku/simple_html_dom": "^4.8"

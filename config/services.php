@@ -50,11 +50,17 @@ return [
         'client_secret' => env('FACEBOOK_SECRET'),
         'redirect'      => env('FACEBOOK_REDIRECT'),
     ],
-    'yahoo' => [
-        'client_id' => env('YAHOO_CLIENT_ID'),
-        'client_secret' => env('YAHOO_CLIENT_SECRET'),
-        'redirect' => env('YAHOO_REDIRECT_URI')
+    'microsoft' => [
+        'client_id' => env('MICROSOFT_CLIENT_ID'),
+        'client_secret' => env('MICROSOFT_CLIENT_SECRET'),
+        'redirect' => env('MICROSOFT_REDIRECT_URI')
     ],
 
-
+    'azure' => [
+        'client_id' => env('AZURE_CLIENT_ID'),
+        'client_secret' => env('AZURE_CLIENT_SECRET'),
+        'redirect' => env('AZURE_REDIRECT_URI'),
+        'tenant' => env('AZURE_TENANT_ID'),
+        'proxy' => env('PROXY')
+    ],
 ];

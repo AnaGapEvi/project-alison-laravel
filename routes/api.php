@@ -7,7 +7,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FreeOnlineCourseController;
-use App\Http\Controllers\OutController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\SocialAuthController;
@@ -58,18 +57,20 @@ Route::get('/new-courses', [CertificateController::class, 'newCourses']);
 Route::get('/free-online', [FreeOnlineCourseController::class, 'freeOnlineCourseCreate']);
 Route::get('/free-online-courses/{id}', [FreeOnlineCourseController::class, 'freeOnlineCourses']);
 
+Route::get('/answers-create', [AnswerController::class, 'answersCreate']);
+
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::put('/forgot', [UserController::class, 'forgotPassword']);
+
+
+Route::post('/auth/{provider}', [UserController::class, 'redirectToProvider']);
+Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'redirectToProvider'])->where('provider', '.*');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/auth-user', [UserController::class, 'authUser']);
     Route::get('/logout', [UserController::class, 'logout']);
 });
-
-Route::post('/auth/{provider}', [UserController::class, 'redirectToProvider']);
-Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'handleGoogleCallback'])->where('provider', '.*');
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
