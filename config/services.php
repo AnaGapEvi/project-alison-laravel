@@ -38,29 +38,13 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => env('GITHUB_REDIRECT_URI')
+        'redirect' => 'https://vue-alison-auth.herokuapp.com/auth/google/callback'
     ],
-    'linkedin' => [
-        'client_id' => env('LINKEDIN_CLIENT_ID'),
-        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => env('LINKEDIN_REDIRECT_URI')
-    ],
+
     'facebook' => [
         'client_id'     => env('FACEBOOK_ID'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect'      => env('FACEBOOK_REDIRECT'),
-    ],
-    'microsoft' => [
-        'client_id' => env('MICROSOFT_CLIENT_ID'),
-        'client_secret' => env('MICROSOFT_CLIENT_SECRET'),
-        'redirect' => env('MICROSOFT_REDIRECT_URI')
+        'redirect'      => 'https://vue-alison-auth.herokuapp.com/auth/facebook/callback'
     ],
 
-    'azure' => [
-        'client_id' => env('AZURE_CLIENT_ID'),
-        'client_secret' => env('AZURE_CLIENT_SECRET'),
-        'redirect' => env('AZURE_REDIRECT_URI'),
-        'tenant' => env('AZURE_TENANT_ID'),
-        'proxy' => env('PROXY')
-    ],
 ];
