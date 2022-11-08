@@ -36,8 +36,8 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
     'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'client_id' => "623424837790-4re684v9gip1nnojpmbhui324b1i4h46.apps.googleusercontent.com",
+        'client_secret' => "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",
         'redirect' => 'https://vue-alison-auth.herokuapp.com/auth/google/callback'
     ],
 
