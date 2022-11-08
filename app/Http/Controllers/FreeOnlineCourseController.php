@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\FreeOnlineCourseService;
-use App\Models\Course;
 use App\Models\FreeOnlineCourse;
-use Curl\Curl;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use voku\helper\HtmlDomParser;
 
 class FreeOnlineCourseController extends Controller
 {

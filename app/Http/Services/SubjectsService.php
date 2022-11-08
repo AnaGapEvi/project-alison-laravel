@@ -4,7 +4,6 @@ namespace App\Http\Services;
 
 use App\Models\Subject;
 use Illuminate\Support\Facades\Http;
-
 class SubjectsService
 {
     public function createSubject(string $url, int $id): bool

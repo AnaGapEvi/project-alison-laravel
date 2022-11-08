@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 
 class CertificateController extends Controller
 {
-    public function index(CertificatesService $certificatesService)
+    public function index(CertificatesService $certificatesService):JsonResponse
     {
         $urls = [
             ['url'=>'https://api.alison.com/v0.1/search?locale=en&page=1&size=12&order=default', 'type' =>'Popular Course'],

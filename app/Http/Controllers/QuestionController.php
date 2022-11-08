@@ -14,6 +14,7 @@ class QuestionController extends Controller
     public function questionCreate(QuestionService $questionService): JsonResponse
     {
         $questionService->createQuestion();
+
         return response()->json(['message'=>'Course already created']);
     }
     public function getQuestion($id):JsonResponse

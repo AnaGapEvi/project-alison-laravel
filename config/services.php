@@ -33,18 +33,13 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI'),
-    ],
-    'github' => [
-        'client_id' => "623424837790-4re684v9gip1nnojpmbhui324b1i4h46.apps.googleusercontent.com",
-        'client_secret' => "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",
-        'redirect' => 'https://vue-alison-auth.herokuapp.com/auth/google/callback'
+        'redirect' => 'https://vue-alisonproject-auth.herokuapp.com/auth/google/callback',
     ],
 
     'facebook' => [
         'client_id'     => env('FACEBOOK_ID'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect'      => 'https://vue-alison-auth.herokuapp.com/auth/facebook/callback'
+        'redirect'      => 'https://vue-alisonproject-auth.herokuapp.com/auth/facebook/callback'
     ],
 
 ];

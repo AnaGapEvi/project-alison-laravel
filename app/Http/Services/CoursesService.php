@@ -33,7 +33,6 @@ class CoursesService
                 'category_id'=> $id
             ];
         }
-//        dd($courses);
 
         return Course::insert($courses);
     }
