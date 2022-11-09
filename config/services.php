@@ -39,7 +39,7 @@ return [
     'facebook' => [
         'client_id'     => env('FACEBOOK_ID'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect'      => 'https://vue-alisonproject-auth.herokuapp.com/auth/facebook/callback'
+        'redirect' => 'https://vue-alisonproject-auth.herokuapp.com/auth/facebook/callback'
     ],
 
 ];
