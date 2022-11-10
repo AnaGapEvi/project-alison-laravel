@@ -16,24 +16,16 @@ class CoursesService
         $type=['Certificate', 'Diploma'];
 
         foreach ($listItem as $item){
-            $image =$item['courseImgUrl'];
-            $description = $item['headline'];
-            $language = $item['language'];
-            $name = $item['name'];
-            $publisherDisplayName = $item['publisher_display_name'];
-
             $courses[] = [
-                'name'=>$name,
-                'publish'=>$publisherDisplayName,
-                'description'=>$description,
-                'language'=>$language,
-                'image'=>$image,
-//                'type'=>'sss',
+                'name'=>$item['name'],
+                'publish'=>$item['publisher_display_name'],
+                'description'=>$item['headline'],
+                'language'=>$item['language'],
+                'image'=>$item['courseImgUrl'],
                 'type'=>$type[rand(0,1)],
                 'category_id'=> $id
             ];
         }
-
         return Course::insert($courses);
     }
 }

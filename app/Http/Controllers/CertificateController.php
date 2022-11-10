@@ -23,31 +23,11 @@ class CertificateController extends Controller
         return response()->json(['message'=>'Already created']);
     }
 
-    public function popularCourse(): JsonResponse
+    public function topCourse($type): JsonResponse
     {
-        $certificates = Certificate::where('type', 'Popular Course')->get();
+        $certificates = Certificate::where('type', $type)->get();
 
         return response()->json($certificates);
     }
 
-    public function topDiplomas():JsonResponse
-    {
-        $certificates = Certificate::where('type', 'Top Diplomas')->get();
-
-        return response()->json($certificates);
-    }
-
-    public function topCertificates():JsonResponse
-    {
-        $certificates = Certificate::where('type', 'Top Certificates')->get();
-
-        return response()->json($certificates);
-    }
-
-    public function newCourses():JsonResponse
-    {
-        $certificates = Certificate::where('type', 'New Courses')->get();
-
-        return response()->json($certificates);
-    }
 }

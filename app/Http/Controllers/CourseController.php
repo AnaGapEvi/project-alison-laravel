@@ -20,25 +20,26 @@ class CourseController extends Controller
             ->get();
         return response()->json($data);
     }
-    public function certificateCourse():JsonResponse
+    public function typeCourse($type):JsonResponse
     {
-        $data= Course::where('type', 'Certificate')
+        $data= Course::where('type', 'LIKE', '%' . $type . '%')
             ->with('category')
             ->get();
 
         return response()->json($data);
     }
-    public function languageFilter(Request $request):JsonResponse
+    public function languageFilter($language):JsonResponse
     {
-        $data= Course::where('language', $request->tr)
+        $data= Course::where('language', $language)
             ->with('category')
             ->get();
 
         return response()->json($data);
     }
-    public function typeFilter(Request $request):JsonResponse
+    public function typeFilter($type):JsonResponse
     {
-        $data= Course::where('type', $request->type)
+//        dd($request);
+        $data= Course::where('type', $type)
             ->with('category')
             ->get();
 
@@ -64,15 +65,15 @@ class CourseController extends Controller
             'https://api.alison.com/v0.1/search?locale=en&language=id&order=default&type=diploma&size=60&page=1',
             'https://api.alison.com/v0.1/search?locale=en&language=es&order=default&type=diploma&size=60&page=1',
             'https://api.alison.com/v0.1/search?locale=en&language=es-LA&order=default&type=diploma&size=60&page=1',
-//            'https://api.alison.com/v0.1/search?locale=es&language=en&order=default&category=it&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=health&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=language&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=business&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=management&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=personal-development&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=marketing&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=engineering&size=20&page=1',
-//            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=education&size=20&page=1'
+            'https://api.alison.com/v0.1/search?locale=es&language=en&order=default&category=it&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=health&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=language&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=business&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=management&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=personal-development&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=marketing&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=engineering&size=20&page=1',
+            'https://api.alison.com/v0.1/search?locale=en&language=en&order=default&category=education&size=20&page=1'
         ];
         foreach ($urls as $id => $url) {
             $coursesService->createCourse($url, $id+1);
@@ -107,9 +108,9 @@ class CourseController extends Controller
 
         return response()->json($itemList);
     }
-    public function findSearch(Request $request)
+    public function findSearch($search)
     {
-        $search = $request->search;
+//        $search = $request->search;
 
         $category = Course::whereHas('category', function ($q) use ($search) {
             $q->where('name', 'LIKE', '%' . $search . '%');
@@ -122,8 +123,8 @@ class CourseController extends Controller
         }
 
         $test = Course::with('category')
-            ->where( 'name', 'LIKE', '%' . $request->search . '%' )
-            ->orWhere ( 'type', 'LIKE', '%' . $request->search . '%' )
+            ->where( 'name', 'LIKE', '%' . $search . '%' )
+            ->orWhere ( 'type', 'LIKE', '%' . $search . '%' )
             ->get();
 
         if (count ( $test ) > 0){
@@ -132,9 +133,9 @@ class CourseController extends Controller
 
         return response()->json( ['message'=> "Sorry there are no results. Try something different"]);
     }
-    public function findSearchCourse(Request $request)
+    public function findSearchCourse(Request $request, $name)
     {
-        $category = Category::where( 'name', 'LIKE', '%' . $request->search . '%' )->with('courses')->get();
+        $category = Category::where( 'name', 'LIKE', '%' . $name . '%' )->with('courses')->get();
 
         if(count($category) > 0){
             return response()->json( $category );

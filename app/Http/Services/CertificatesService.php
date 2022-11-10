@@ -14,20 +14,13 @@ class CertificatesService
             $certificates = [];
 
             foreach ($listItem as $item){
-                $image =$item['courseImgUrl'];
-                $description = $item['headline'];
-                $language = $item['language'];
-                $name = $item['name'];
-                $headline = $item['headline'];
-                $publisherName = $item['publisher_name'];
-
                 $certificates[] = [
-                    'image'=>$image,
-                    'headline'=>$headline,
-                    'description'=>$description,
-                    'language'=>$language,
-                    'name'=>$name,
-                    'publish_name'=>$publisherName,
+                    'image'=>$item['courseImgUrl'],
+                    'headline'=>$item['headline'],
+                    'description'=>$item['headline'],
+                    'language'=>$item['language'],
+                    'name'=>$item['name'],
+                    'publish_name'=>$item['publisher_name'],
                     'type'=>$type
                 ];
             }

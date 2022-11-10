@@ -13,12 +13,9 @@ class SubjectsService
         $subjects = [];
 
         foreach ($listItemIt as $item){
-            $name = $item['name'];
-            $slug = $item['slug'];
-
             $subjects[] = [
-                'name'=>$name,
-                'slug'=>$slug,
+                'name'=>$item['name'],
+                'slug'=>$item['slug'],
                 'category_id'=> $id
             ];
         }

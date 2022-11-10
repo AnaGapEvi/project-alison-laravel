@@ -37,41 +37,39 @@ Route::get('/sub-categories', [SubjectController::class, 'subCreate']);
 
 Route::get('/courses/{id}', [CourseController::class, 'courses']);
 Route::get('/courses', [CourseController::class, 'courseCreate']);
-Route::get('/diploma-courses', [CourseController::class, 'diplomaCourse']);
-Route::get('/certificate-courses', [CourseController::class, 'certificateCourse']);
-Route::post('/language-filter', [CourseController::class, 'languageFilter']);
-Route::post('/type-filter', [CourseController::class, 'typeFilter']);
+
+Route::get('/type-courses/{type}', [CourseController::class, 'typeCourse']);
+Route::get('/language-filter/{language}', [CourseController::class, 'languageFilter']);
+Route::get('/type-filter/{type}', [CourseController::class, 'typeFilter']);
 Route::get('/yesterday-users', [CourseController::class, 'yesterdayUsers']);
-Route::post('/find-search-course', [CourseController::class, 'findSearch']);
-Route::post('/find-search-course-name', [CourseController::class, 'findSearchCourse']);
+Route::get('/find-search-course/{search}', [CourseController::class, 'findSearch']);
+Route::get('/find-search-course-name/{name}', [CourseController::class, 'findSearchCourse']);
+Route::get('/free-online', [FreeOnlineCourseController::class, 'freeOnlineCourseCreate']);
+Route::get('/free-online-courses/{id}', [FreeOnlineCourseController::class, 'freeOnlineCourses']);
+
 
 Route::get('/question-create', [QuestionController::class, 'questionCreate']);
 Route::get('/get-question/{id}', [QuestionController::class, 'getQuestion']);
 
 Route::get('/answer', [AnswerController::class, 'answers']);
-
-Route::get('/top-certificates', [CertificateController::class, 'topCertificates']);
-Route::get('/popular-course', [CertificateController::class, 'popularCourse']);
-Route::get('/top-diplomas', [CertificateController::class, 'topDiplomas']);
-Route::get('/certificates', [CertificateController::class, 'index']);
-Route::get('/new-courses', [CertificateController::class, 'newCourses']);
-Route::get('/free-online', [FreeOnlineCourseController::class, 'freeOnlineCourseCreate']);
-Route::get('/free-online-courses/{id}', [FreeOnlineCourseController::class, 'freeOnlineCourses']);
-
 Route::get('/answers-create', [AnswerController::class, 'answersCreate']);
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::put('/forgot', [UserController::class, 'forgotPassword']);
+//Route::get('/top-certificates', [CertificateController::class, 'topCertificates']);
+Route::get('/top-course/{type}', [CertificateController::class, 'topCourse']);
+//Route::get('/top-diplomas', [CertificateController::class, 'topDiplomas']);
+Route::get('/certificates', [CertificateController::class, 'index']);
+//Route::get('/new-courses', [CertificateController::class, 'newCourses']);
 
-
-Route::post('/auth/{provider}', [UserController::class, 'redirectToProvider']);
 Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'redirectToProvider'])->where('provider', '.*');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/auth-user', [UserController::class, 'authUser']);
     Route::get('/logout', [UserController::class, 'logout']);
 });
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/auth/{provider}', [UserController::class, 'redirectToProvider']);
+Route::put('/forgot', [UserController::class, 'forgotPassword']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
