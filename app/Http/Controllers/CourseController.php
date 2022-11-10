@@ -13,15 +13,10 @@ use voku\helper\HtmlDomParser;
 
 class CourseController extends Controller
 {
-    public function diplomaCourse():JsonResponse
-    {
-        $data= Course::where('type', 'Diploma')
-            ->with('category')
-            ->get();
-        return response()->json($data);
-    }
+
     public function typeCourse($type):JsonResponse
     {
+//        dd($type);
         $data= Course::where('type', 'LIKE', '%' . $type . '%')
             ->with('category')
             ->get();
