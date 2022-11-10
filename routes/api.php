@@ -23,7 +23,6 @@ Route::get('/careers', [CareerController::class, 'index']);
 
 Route::get('/subjects/{id}', [SubjectController::class, 'subjects']);
 Route::get('/sub-categories', [SubjectController::class, 'subCreate']);
-Route::get('/sub-categories', [SubjectController::class, 'subCreate']);
 
 Route::get('/courses/{id}', [CourseController::class, 'courses']);
 Route::get('/courses', [CourseController::class, 'courseCreate']);
@@ -41,7 +40,7 @@ Route::get('/question-create', [QuestionController::class, 'questionCreate']);
 Route::get('/get-question/{id}', [QuestionController::class, 'getQuestion']);
 
 
-Route::get('/answer', [AnswerController::class, 'answers']);
+//Route::get('/answer', [AnswerController::class, 'answers']);
 Route::get('/answers-create', [AnswerController::class, 'answersCreate']);
 
 Route::get('/top-course/{type}', [CertificateController::class, 'topCourse']);
