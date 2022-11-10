@@ -102,8 +102,8 @@ class UserController extends Controller
         $findUser = User::query()->where('email', $user->email)->first();
         if (!$findUser AND $provider === 'facebook') {
             $newUser = User::create([
-                'firstname'=>$user->nickname,
-                'lastname'=>$user->nickname,
+                'firstname'=>$user->name,
+                'lastname'=>$user->name,
                 'email'=>$user->email,
                 'provider'=>$provider,
                 'password' => Str::random(8)

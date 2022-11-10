@@ -11,7 +11,6 @@ class CategoryController extends Controller
     {
         $category = Category::with('courses')->get();
 
-
         return response()->json($category);
     }
 }
