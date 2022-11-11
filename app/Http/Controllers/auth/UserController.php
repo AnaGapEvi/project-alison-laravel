@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         $validator = $request->validate([
             'email'=>'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ]);
 
         if (!$validator) {
@@ -57,7 +57,7 @@ class UserController extends Controller
         $user = User::query()->where('email', $request->email)->first();
         $hash = Hash::check($request->password, $user->password);
 
-        if (!$user || !$hash) {
+            if (!$user || !$hash) {
             $response = ['message' => 'Email Or Password Is Incorrect'];
             return response()->json($response, 422);
         }
@@ -100,6 +100,8 @@ class UserController extends Controller
         if (!$user) return response()->json(['message' => 'user does not fined']);
 
         $findUser = User::query()->where('email', $user->email)->first();
+//        $hash = Hash::check($request->password, $user->password);
+
         if (!$findUser AND $provider === 'facebook') {
             $newUser = User::create([
                 'firstname'=>$user->name,

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\CareerController;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/our-as', [AboutController::class, 'ourAs']);
 Route::get('/get-categories', [CategoryController::class, 'index']);
 
 Route::get('/get-skills', [SkillsController::class, 'index']);
