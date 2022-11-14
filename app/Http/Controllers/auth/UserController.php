@@ -70,7 +70,6 @@ class UserController extends Controller
 
     public function authUser(): JsonResponse
     {
-//        dd(auth()->user());
         return response()->json(['user' => auth()->user()]);
     }
 
