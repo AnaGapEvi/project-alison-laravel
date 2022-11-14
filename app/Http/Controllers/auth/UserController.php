@@ -96,7 +96,7 @@ class UserController extends Controller
     public function redirectToProvider($provider):JsonResponse
     {
         $user = Socialite::driver($provider)->stateless()->user();
-
+//        return response()->json($user);
         if (!$user) return response()->json(['message' => 'user does not fined']);
 
         $findUser = User::query()->where('email', $user->email)->first();
