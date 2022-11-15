@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FreeOnlineCourseController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\SocialAuthController;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/get-categories', [CategoryController::class, 'index']);
+Route::get('/program', [ProgramController::class, 'index']);
+Route::get('/empower', [ProgramController::class, 'empower']);
+Route::get('/publisher', [ProgramController::class, 'publisher']);
 
 Route::get('/get-skills', [SkillsController::class, 'index']);
 
