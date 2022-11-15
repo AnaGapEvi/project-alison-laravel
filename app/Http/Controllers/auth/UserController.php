@@ -99,20 +99,20 @@ class UserController extends Controller
 
         $findUser = User::query()->where('email', $user->email)->first();
 
-//        if (!$findUser AND $provider === 'facebook') {
-//            $newUser = User::create([
-//                'firstname'=>$user->name,
-//                'lastname'=>$user->name,
-//                'email'=>$user->email,
-//                'provider'=>$provider,
-//                'password' => Str::random(8)
-//            ]);
-//
-//            $token = $user->createToken('Laravel')->accessToken;
-//            $newUser->reg_token = $token;
-//
-//            return response()->json(['token' => $token], 204);
-//        }
+        if (!$findUser AND $provider === 'facebook') {
+            $newUser = User::create([
+                'firstname'=>$user->name,
+                'lastname'=>$user->name,
+                'email'=>$user->email,
+                'provider'=>$provider,
+                'password' => Str::random(8)
+            ]);
+
+            $token = $user->createToken('Laravel')->accessToken;
+            $newUser->reg_token = $token;
+
+            return response()->json(['token' => $token], 204);
+        }
         if (!$findUser) {
             $newUser = User::create([
                 'firstname'=>$user->name,
@@ -131,6 +131,7 @@ class UserController extends Controller
         $token = $findUser->createToken('Laravel Password Grant Client')->accessToken;
 
         $response = ['token' => $token];
-        return response()->json(['response'=>$response]);
+        return response()->json($response);
+
     }
 }
