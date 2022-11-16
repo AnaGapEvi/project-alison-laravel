@@ -13,11 +13,9 @@ class SocialAuthController extends Controller
     {
 
         $user = Socialite::driver($provider)->stateless()->user();
-
         if (!$user) return response()->json(['message' => 'user does not fined']);
 
         $findUser = User::query()->where('email', $user->email)->first();
-
 
         if ($findUser) {
             $token = $user->token;

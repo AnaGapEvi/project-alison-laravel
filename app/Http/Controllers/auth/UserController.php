@@ -42,17 +42,17 @@ class UserController extends Controller
         return response()->json(['token' => $token], 200);
     }
 
-
     public function login(Request $request): JsonResponse
     {
-        $validator = $request->validate([
-            'email'=>'required|email',
-            'password' => 'required|min:6',
-        ]);
 
-        if (!$validator) {
-            return response()->json($validator->error());
-        }
+//        $validator = $request->validate([
+//            'email'=>'required|email',
+//            'password' => 'required|min:6',
+//        ]);
+
+//        if (!$validator) {
+//            return response()->json($validator->error());
+//        }
 
         $user = User::query()->where('email', $request->email)->first();
         $hash = Hash::check($request->password, $user->password);
@@ -62,7 +62,7 @@ class UserController extends Controller
             return response()->json($response, 422);
         }
 
-        $user->save();
+//        $user->save();
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
         $response = ['token' => $token];
         return response()->json($response);
@@ -85,17 +85,10 @@ class UserController extends Controller
 
         return response()->json($user);
     }
-    public function logout(Request $request): JsonResponse
-    {
-        $request->user()->token()->revoke();
-
-        return response()->json(['message' => 'Successfully logged out']);
-    }
-
     public function redirectToProvider($provider):JsonResponse
     {
-//        return response()->json($provider);
         $user = Socialite::driver($provider)->stateless()->user();
+
         if (!$user) return response()->json(['message' => 'user does not fined']);
 
         $findUser = User::query()->where('email', $user->email)->first();
@@ -117,10 +110,17 @@ class UserController extends Controller
         }
 
         $token = $findUser->createToken('Laravel Password Grant Client')->accessToken;
-//        $newUser->save();
-
+        $findUser->reg_token = $token;
+        $findUser->save();
         $response = ['token' => $token];
-        return response()->json($response);
 
+        return response()->json($response);
     }
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user()->token()->revoke();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
 }
