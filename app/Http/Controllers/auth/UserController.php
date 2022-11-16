@@ -44,17 +44,16 @@ class UserController extends Controller
 
     public function login(Request $request): JsonResponse
     {
+        $validator = $request->validate([
+            'email'=>'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        if (!$validator) {
+            return response()->json($validator->error());
+        }
+
         return response()->json($request);
-
-//        $validator = $request->validate([
-//            'email'=>'required|email',
-//            'password' => 'required|min:6',
-//        ]);
-
-//        if (!$validator) {
-//            return response()->json($validator->error());
-//        }
-
         $user = User::query()->where('email', $request->email)->first();
         $hash = Hash::check($request->password, $user->password);
 
