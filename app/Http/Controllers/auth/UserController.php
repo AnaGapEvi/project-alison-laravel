@@ -53,16 +53,14 @@ class UserController extends Controller
             return response()->json($validator->error());
         }
 
-        return response()->json($request);
         $user = User::query()->where('email', $request->email)->first();
         $hash = Hash::check($request->password, $user->password);
 
-            if (!$user || !$hash) {
+        if (!$user || !$hash) {
             $response = ['message' => 'Email Or Password Is Incorrect'];
             return response()->json($response, 422);
         }
 
-//        $user->save();
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
         $response = ['token' => $token];
         return response()->json($response);
