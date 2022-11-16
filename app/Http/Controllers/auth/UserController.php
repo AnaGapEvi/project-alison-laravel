@@ -49,21 +49,27 @@ class UserController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        if (!$validator) {
-            return response()->json($validator->error());
-        }
+        if (!$validator) return response()->json($validator->error());
 
         $user = User::query()->where('email', $request->email)->first();
-        $hash = Hash::check($request->password, $user->password);
 
-        if (!$user || !$hash) {
-            $response = ['message' => 'Email Or Password Is Incorrect'];
+        if(!$user) return response()->json(["message" =>'User does not exist'], 422);
+
+
+//        $hash = Hash::check($request->password, $user->password);
+
+        if(!$user) return response()->json(["message" =>'User does not exist'], 422);
+
+        if (Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+            $response = ['token' => $token];
+
+            return response()->Json($response);
+        } else {
+            $response = ["message" => "Password mismatch"];
+
             return response()->json($response, 422);
         }
-
-        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-        $response = ['token' => $token];
-        return response()->json($response);
     }
 
     public function authUser(): JsonResponse
