@@ -44,6 +44,7 @@ class UserController extends Controller
 
     public function login(Request $request): JsonResponse
     {
+        return response()->json($request);
 
 //        $validator = $request->validate([
 //            'email'=>'required|email',
