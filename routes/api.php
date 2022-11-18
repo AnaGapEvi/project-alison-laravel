@@ -20,6 +20,7 @@ Route::get('/get-categories', [CategoryController::class, 'index']);
 Route::get('/program', [ProgramController::class, 'index']);
 Route::get('/empower', [ProgramController::class, 'empower']);
 Route::get('/publisher', [ProgramController::class, 'publisher']);
+Route::get('/hubs', [ProgramController::class, 'hubs']);
 
 Route::get('/get-skills', [SkillsController::class, 'index']);
 

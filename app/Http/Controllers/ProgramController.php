@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Curl\Curl;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Http;
 use voku\helper\HtmlDomParser;
 
 class ProgramController extends Controller
@@ -69,4 +70,23 @@ class ProgramController extends Controller
         }
         return response()->json($itemList);
     }
+    public function hubs():JsonResponse
+    {
+        $urls = Http::get('https://alison.com/api/v1/hubs?page=1&query=&per_page=12&sort=asc');
+        $listItem = $urls['data'];
+        $courses = [];
+
+        foreach ($listItem as $item) {
+            $courses[] = [
+                'title' => $item['title'],
+                'description' => $item['description'],
+                'image' => $item['intro_image'],
+                'course_count' => $item['stats']['course_count'],
+                'career_count' => $item['stats']['career_count'],
+                'article_count' => $item['stats']['article_count'],
+            ];
+        }
+        return response()->json($courses);
+    }
+
 }
